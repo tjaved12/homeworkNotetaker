@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
+    "jquery": "^3.5.1",
+    "jsdom": "^16.4.0",
     "nodemon": "^2.0.4"
   }
 }
