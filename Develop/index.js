@@ -4,6 +4,10 @@ var express = require("express");
 var path = require("path");
 var fs = require("fs");
 
+const { JSDOM } = require( "jsdom" );
+const { window } = new JSDOM( "" );
+const $ = require( "jquery" )( window );
+
 var app = express();
 var PORT = 3050;
 app.use(express.static('public'))
@@ -200,16 +204,8 @@ const getAndRenderNotes = () => {
   return getNotes().then(renderNoteList);
 };
 
-function grab() {
-  var title = $(".note-title").val()
-  var text = $(".note-textarea").val()
-  console.log(text)
-  console.log(title)
-
-}
 
 
-$("save").on("click", grab())
 
 $saveNoteBtn.on("click", handleNoteSave);
 $noteList.on("click", ".list-group-item", handleNoteView);
