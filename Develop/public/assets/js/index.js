@@ -1,66 +1,4 @@
 
-// ===========================================================
-var express = require("express");
-var path = require("path");
-var fs = require("fs");
-
-const { JSDOM } = require( "jsdom" );
-const { window } = new JSDOM( "" );
-const $ = require( "jquery" )( window );
-
-var app = express();
-var PORT = 3050;
-app.use(express.static('public'))
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
-
-  app.get("/notes", function(req, res) {
-    res.sendFile(path.join(__dirname, "./public/notes.html"));
-  });
-  
- 
-
-app.get("/api/notes", function(req, res) {
-    fs.readFile("db/db.json", function (err, data) {
-         if (err) {
-            return console.log(err);
-        }
-    
-        console.log("Success!", JSON.parse(data));
-
-        res.json(JSON.parse(data))
-    
-   
-    })
-    //return res.json(notes);
-
-
-  });
-  
-  app.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname, "./public/index.html"));
-
-    });
-app.listen(PORT, function() {
-    console.log("App listening on localhost: " + PORT);
-  });
-
-app.post("/api/notes", function (req, res) {
-
-  fs.writeFile("db/db.json", function (err, data) {
-    if (err) {
-      return console.log(err);
-    }
-
-    console.log("Success!", JSON.parse(data));
-
-    req.json(JSON.parse(data))
-
-
-  })
-});
-
 
 const $noteTitle = $(".note-title");
 const $noteText = $(".note-textarea");
@@ -167,6 +105,7 @@ const handleRenderSaveBtn = function () {
 
 // Render's the list of note titles
 const renderNoteList = (notes) => {
+  console.log(notes)
   $noteList.empty();
 
   const noteListItems = [];
@@ -203,9 +142,6 @@ const renderNoteList = (notes) => {
 const getAndRenderNotes = () => {
   return getNotes().then(renderNoteList);
 };
-
-
-
 
 $saveNoteBtn.on("click", handleNoteSave);
 $noteList.on("click", ".list-group-item", handleNoteView);
