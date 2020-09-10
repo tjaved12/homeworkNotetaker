@@ -8,7 +8,7 @@
     "start": "node server.js",
     "watch": "nodemon server.js"
   },
-  },
+
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -17,5 +17,5 @@
     "jsdom": "^16.4.0",
     "nodemon": "^2.0.4",
     "uniqid": "^5.2.0"
-  }
-
+  },
+}
