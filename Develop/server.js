@@ -9,7 +9,7 @@ var uniqid = require('uniqid');
 // =============================================================
 var app = express();
 //var PORT = 3060;
-const PORT = process.env.PORT || 3060;
+var PORT = process.env.PORT || 8080;
 
 app.use(express.static('public'))
 
